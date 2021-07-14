@@ -33,7 +33,7 @@ public class BoardController {
 		service.regist(board);
 		model.addAttribute("result", "success");
 		
-		return "/board/success"; //전달할 뷰
+		return "/board/Success"; //전달할 뷰
 	}
 
 }
