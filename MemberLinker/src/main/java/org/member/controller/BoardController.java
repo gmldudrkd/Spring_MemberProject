@@ -10,13 +10,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/board/*") //Board의 모든경로를 /board/~ 로인식
 public class BoardController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
-	
+
 	@Inject
 	private BoardService service;
 	
@@ -26,14 +28,40 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public String registPOST(BoardVO board, Model model) throws Exception{
-		logger.info("regist post.....");
-		logger.info(board.toString());
-		
+	public String registPOST(BoardVO board, RedirectAttributes rttr) throws Exception{
+	//public String registPOST(BoardVO board, Model model) throws Exception{
 		service.regist(board);
-		model.addAttribute("result", "success");
+		rttr.addFlashAttribute("msg","success"); //? 데이터가 숨겨짐(한번만 사용되는 데이터)
+		//model.addAttribute("result", "success"); //url에 ?result=success 입력값
+		return "redirect:/board/listAll";
+	}
+	
+	@RequestMapping(value="/listAll", method=RequestMethod.GET)
+	public void listAll(Model model) throws Exception {
+		logger.info("show all list....");
+		model.addAttribute("list", service.listAll());
+	}
+	
+	@RequestMapping(value="/read", method=RequestMethod.GET)
+	public void read(@RequestParam("bno") int bno, Model model) throws Exception{
+		logger.info("show read detail....");
+		//스프링의 addAttribute는 작업 시 아무런 이름없이 데이터 입력하면, 클래스이름을 자동으로 소문자로 넣는다. 즉, BoardVO -> boardVO
+		model.addAttribute(service.read(bno));
+	}
+	
+	@RequestMapping(value="/modify", method=RequestMethod.GET)
+	public void modifyGet(int bno, Model model) throws Exception{
+		logger.info("modify get....");
+		model.addAttribute(service.read(bno));
+	}
+	
+	@RequestMapping(value="modify", method=RequestMethod.POST)
+	public String modifyPost(BoardVO board, RedirectAttributes rttr) throws Exception{
+		logger.info("modify post..");
+		service.modify(board);
+		rttr.addFlashAttribute("msg","success");
 		
-		return "/board/Success"; //전달할 뷰
+		return "redirect:/board/listAll";
 	}
 
 }
