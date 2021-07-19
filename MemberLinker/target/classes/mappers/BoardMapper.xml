@@ -24,4 +24,13 @@
 	select bno, title, content, writer, regdate, viewcnt from tbl_board where bno > 0
 </select>
 
+<select id="listPage" resultType="org.member.domain.BoardVO">
+	select bno, title, content, writer, regdate, viewcnt from tbl_board where bno > 0 and order by bno desc, regdate desc
+	limit #{page}, 10
+</select>
+
+<select id="listCriteria" resultType="org.member.domain.BoardVO">
+</select>
+
+
 </mapper>

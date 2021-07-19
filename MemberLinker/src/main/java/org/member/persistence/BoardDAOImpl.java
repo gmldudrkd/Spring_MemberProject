@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.member.domain.BoardVO;
+import org.member.domain.Criteria;
 import org.springframework.stereotype.Repository;
 
 
@@ -39,4 +40,19 @@ public class BoardDAOImpl  implements BoardDAO{
 	public List<BoardVO> listAll() throws Exception{
 		return session.selectList(namespace+".listAll");
 	}
+	
+	@Override
+	public List<BoardVO> listPage(int page) throws Exception{
+		if(page<=0) {
+			page=1;
+		}
+		page = (page-1) *10;
+		return session.selectList(namespace+".listPage",page);
+	}
+	
+	@Override
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception{
+		return session.selectList(namespace+".listCriteria", cri);
+	}
+	
 }

@@ -2,6 +2,7 @@ package org.member.persistence;
 
 import java.util.List;
 import org.member.domain.BoardVO;
+import org.member.domain.Criteria;
 
 public interface BoardDAO {
 	
@@ -14,5 +15,9 @@ public interface BoardDAO {
 	public void delete(Integer bno) throws Exception;
 	
 	public  List<BoardVO> listAll() throws Exception;
+	
+	public  List<BoardVO> listPage(int page) throws Exception;
+	
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception;
 
 }
