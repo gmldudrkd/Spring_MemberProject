@@ -29,4 +29,19 @@ th{
 width:7%;
 } 
 
+ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+li {
+	list-style-type: none;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border : 0;
+    float: left;
+    margin-left:10px;
+}
+
 </style>

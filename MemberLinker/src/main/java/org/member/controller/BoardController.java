@@ -3,6 +3,8 @@ package org.member.controller;
 import javax.inject.Inject;
 
 import org.member.domain.BoardVO;
+import org.member.domain.Criteria;
+import org.member.domain.PageMaker;
 import org.member.service.BoardService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,6 +64,24 @@ public class BoardController {
 		rttr.addFlashAttribute("msg","success");
 		
 		return "redirect:/board/listAll";
+	}
+	
+	@RequestMapping(value="/listCri", method=RequestMethod.GET)
+	public void listAll(Criteria cri, Model model) throws Exception{
+		logger.info("list all,....");
+		model.addAttribute("list", service.listCriteria(cri));
+	}
+	
+	@RequestMapping(value="/listPage", method=RequestMethod.GET)
+	public void listPage(Criteria cri, Model model) throws Exception {
+		logger.info(cri.toString());
+		
+		model.addAttribute("list", service.listCriteria(cri)); //데이터를 model에 저장
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.listCountCriteria(cri));
+		
+		model.addAttribute("pageMaker",pageMaker);
 	}
 
 }
