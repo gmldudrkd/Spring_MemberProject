@@ -1,5 +1,8 @@
 package org.member.domain;
 
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
 //페이징 처리가 필요한 화면에서 같이 사용하기 위해 클래스처리
 public class PageMaker {
 	private int totalCount;
@@ -13,6 +16,9 @@ public class PageMaker {
 	
 	public void setCri(Criteria cri) {
 		this.cri = cri;
+	}
+	public Criteria getCri() {
+		return cri;
 	}
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;	
@@ -70,6 +76,14 @@ public class PageMaker {
 	public PageMaker setendPage(int endPage) {
 		this.endPage = endPage;
 		return this;
+	}
+	
+	public String makeQuery(int page) {
+		UriComponents uriComponents = UriComponentsBuilder.newInstance()
+				.queryParam("page", page)
+				.queryParam("perPageNum",cri.getPerPageNum())
+				.build();
+		return uriComponents.toUriString();
 	}
 
 }

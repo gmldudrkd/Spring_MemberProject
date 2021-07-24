@@ -28,7 +28,7 @@
 			<tr>
 				<td style="width:5%">${boardVO.bno }</td>
 				<td style="width:20%">
-					<a href="/board/read?bno=${boardVO.bno }">${boardVO.title }</a>
+					<a href='/board/readPage${pageMaker.makeQuery(pageMaker.cri.page)}&bno=${boardVO.bno}'>${boardVO.title}</a>
 				</td>
 				<td style="width:10%">${boardVO.writer }</td>
 				<td style="width:10%">
@@ -46,14 +46,21 @@
 		
 		<c:forEach begin="${pageMaker.startPage }"  end="${pageMaker.endPage }" var="idx">
 			<li>
-				<a href="listPage?page=${idx }">${idx }</a>
+				<a href="listPage${pageMaker.makeQuery(idx) }">${idx }</a>
 			</li>
 		</c:forEach>
 		
 		<c:if test="${pageMaker.next && pageMaker.endPage>0 }">
-			<li><a href="listPage?page=${pageMaker.endPage+1 }">&raquo;</a></li>
+			<li><a href="listPage${pageMaker.makeQuery(pagemaker.endPage+1) }">&raquo;</a></li>
 		</c:if>
 	</div>
 
 </body>
 </html>
+
+<script>
+	var result = "${msg}";
+	if(result == "success"){
+		alert("처리 완료");
+	}
+</script>
