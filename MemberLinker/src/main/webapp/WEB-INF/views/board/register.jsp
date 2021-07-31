@@ -12,20 +12,22 @@
 
 <form role="form" method="post">
 	
-	<div class ="regi_div">
+	<div class ="regi_div" >
 		<div class="divgrp">
-			<div class="title_div">제목</div>
-			<input type="text" name="title"  placeholder="Enter Title" width="300px">
+			<div class="title_div fieldnm">제목 : <br>
+				<input type="text" name="title"  placeholder="제목을 입력하세요,," width="500px">
+			</div>
 		</div>
 		
 		<div class="divgrp">
-			<div class="title_div">내용</div>
-			<textarea name="content" rows="3" placeholder="Enter......."></textarea>
+			<div class="title_div fieldnm">내용 : </div>
+			<textarea name="content" rows="3" placeholder="기재할 내용을 입력하세요,,"></textarea>
 		</div>
 		
 		<div class="divgrp">
-			<div class="title_div">작성자</div>
-			<input type="text" name="writer" placeholder="Enter Writer">
+			<div class="title_div fieldnm">작성자 : <br>
+				<input type="text" name="writer" placeholder="작성자를 입력하세요">
+			</div>
 		</div>
 	</div>
 	
@@ -34,5 +36,6 @@
 	</div>
 </form>
 
+ <%@include file="../include/Tail.jsp" %>
 </body>
 </html>

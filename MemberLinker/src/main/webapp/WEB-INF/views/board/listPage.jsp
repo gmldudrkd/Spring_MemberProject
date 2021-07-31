@@ -13,7 +13,6 @@
 <title>게시판 목록</title>
 </head>
 <body>
-	<br>
 	<div style="margin:20px;">게시판 목록</div>
 	<table>
 		<tr>
@@ -21,7 +20,6 @@
 			<th style="width:20%">제 목</th>
 			<th style="width:10%">저자</th>
 			<th style="width:10%">등록일시</th>
-			<th style="width:5%">조회수</th>
 		</tr>
 		
 		<c:forEach items="${list}" var="boardVO">
@@ -34,12 +32,11 @@
 				<td style="width:10%">
 					<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${boardVO.regdate }" />
 				</td>
-				<td style="width:5%">${boardVO.viewcnt }</td>
 			</tr>
 		</c:forEach>
 	</table>
 	
-	<div>
+	<div style="margin-left:200px">.
 		<c:if test="${pageMaker.prev }">
 			<li><a href="listPage?page=${pageMaker.startPage-1 }">&laquo;</a></li>
 		</c:if>
@@ -49,12 +46,13 @@
 				<a href="listPage${pageMaker.makeQuery(idx) }">${idx }</a>
 			</li>
 		</c:forEach>
-		
+
 		<c:if test="${pageMaker.next && pageMaker.endPage>0 }">
-			<li><a href="listPage${pageMaker.makeQuery(pagemaker.endPage+1) }">&raquo;</a></li>
+			<li><a href="listPage${pageMaker.makeQuery(pageMaker.endPage+1) }">&raquo;</a></li>
 		</c:if>
 	</div>
 
+ <%@include file="../include/Tail.jsp" %>
 </body>
 </html>
 

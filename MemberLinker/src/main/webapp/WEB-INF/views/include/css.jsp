@@ -5,11 +5,17 @@
 }
 
 .divgrp{
-	margin-top:30px;
+	margin-top:25px;
 }
 
 .title_div{
 	text-align:left;
+	width:95%;
+}
+
+.fieldnm{
+    font-color:gray;
+    font-size:4px;
 }
 
 table{

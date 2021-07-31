@@ -25,18 +25,20 @@
 		</div>
 		
 		<div class="divgrp">
-			<div class="title_div">제목</div>
-			<input type="text" name="title"  value="${boardVO.title }"   width="300px">
+			<div class="title_div fieldnm">제목 : <br>
+				<input type="text" name="title"  value="${boardVO.title }"   width="300px">
+			 </div>
 		</div>
 		
 		<div class="divgrp">
-			<div class="title_div">내용</div>
+			<div class="title_div fieldnm">내용 : </div>
 			<textarea name="content" rows="3" >${boardVO.content }</textarea>
 		</div>
 		
 		<div class="divgrp">
-			<div class="title_div">작성자</div>
-			<input type="text" name="writer"  value="${boardVO.writer }" readonly="readonly" >
+			<div class="title_div fieldnm">작성자 : <br>
+				<input type="text" name="writer"  value="${boardVO.writer }" readonly="readonly" >
+			</div>
 		</div>
 	</div>
 </form>
@@ -46,7 +48,7 @@
 	<button type="submit" id="cancel" style="background-color:gray;"><font color="white">취 소</font></button>
 </div>
 
-
+ <%@include file="../include/Tail.jsp" %>
 </body>
 </html>
 
